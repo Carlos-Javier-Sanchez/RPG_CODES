@@ -1,0 +1,6 @@
+     A*-------------------------------------------------------------
+     A* DESCRIPTION LOGICAL FILE FOR STUDFILE
+     A* ORDER BY STUDEN SUR_NAME
+     A*-------------------------------------------------------------
+     A          R RSTUDFILE                PPFILE(STUDFILE)
+     A          K STUDSNAM

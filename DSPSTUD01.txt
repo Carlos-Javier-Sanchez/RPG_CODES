@@ -1,0 +1,329 @@
+     A*%%TS  SD  20250610  092829  CAJAVIER    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R DETAIL                    SFL
+     A*%%TS  SD  20250609  113809  CAJAVIER    REL-V7R5M0  5770-WDS
+     A            OPT            1A  I  8  3
+     A            STUDID    R        O  8  6REFFLD(RSTUDFILE/STUDID CAJAVIER1/S-
+     A                                      TUDFILE)
+     A            STUDGEND  R        O  8 77REFFLD(RSTUDFILE/STUDGEND CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDSNAM  R        O  8 13REFFLD(RSTUDFILE/STUDSNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDGNAM  R        O  8 45REFFLD(RSTUDFILE/STUDGNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A          R HEADER                    SFLCTL(DETAIL)
+     A*%%TS  SD  20250610  092829  CAJAVIER    REL-V7R5M0  5770-WDS
+     A                                      SFLSIZ(0500)
+     A                                      SFLPAG(0010)
+     A                                      CF03(03 'Salir')
+     A                                      CF06(06 'Grabar')
+     A                                      OVERLAY
+     A N93                                  SFLDSP
+     A N93                                  SFLDSPCTL
+     A  93                                  SFLCLR
+     A N91                                  SFLEND(*SCRBAR *SCRBAR)
+     A                                  1  2SYSNAME
+     A                                  1 28'Nicola Tesla School'
+     A                                  2  2USER
+     A                                  1 71DATE
+     A                                      EDTCDE(Y)
+     A                                  2 71TIME
+     A                                  2 26'Student Information Record'
+     A                                  4  2'Options  '
+     A                                      COLOR(BLU)
+     A                                  4 13'2: Update    4: Delete   5: Inquir-
+     A                                      y '
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                  7  2'Opt StudID       Student S. Name  -
+     A                                                       Student G. Name   -
+     A                                           Gend'
+     A                                      DSPATR(UL)
+     A                                  5  2'Search by:'
+     A                                      DSPATR(HI)
+     A                                      COLOR(TRQ)
+     A                                  5 13'Stud ID'
+     A                                      DSPATR(HI)
+     A            WSTUDID        5D 0I  5 22
+     A                                  5 28'St_SNam'
+     A                                      DSPATR(HI)
+     A            WSTDSNAM      30A  I  5 36
+     A          R FOOT
+     A*%%TS  SD  20250609  201909  CAJAVIER    REL-V7R5M0  5770-WDS
+     A                                      CF06(06 'New Record')
+     A                                      CF03(03 'Exit')
+     A                                 21  3'                                  -
+     A                                                                         -
+     A                                              '
+     A                                      DSPATR(UL)
+     A            CEN            2Y 0B 22  3PSHBTNFLD
+     A                                      PSHBTNCHC(1 'ENTER')
+     A            C03            2Y 0B 22 65PSHBTNFLD
+     A                                      PSHBTNCHC(2 'F03' CF03)
+     A            W06            2Y 0B 22 35PSHBTNFLD
+     A                                      PSHBTNCHC(2 'F06' CF06)
+     A                                 22 73'EXIT'
+     A                                 22 13'CONTINUE'
+     A          R DSP01
+     A*%%TS  SD  20250609  192114  CAJAVIER    REL-V7R5M0  5770-WDS
+     A                                      CF12(12 'CANCELA')
+     A                                  1  2SYSNAME
+     A                                  1 31'Nicola Tesla School'
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  2  2USER
+     A                                  2 34'Student Record'
+     A                                  2 72TIME
+     A                                  4  2'                                  -
+     A                                                                         -
+     A                                               '
+     A                                      DSPATR(UL)
+     A                                  6  2'Student ID ...............:'
+     A                                  7  2'Student Given Name........:'
+     A                                  8  2'Student Sur Name .........:'
+     A                                  9  2'Student Address ..........:'
+     A                                 10  2'Gender ...................:'
+     A                                 11  2'Student Date of Birth.....:'
+     A                                 13  2'Parent ID ................:'
+     A                                 14  2'Parents G. Name ..........:'
+     A                                 17  2'Additional contact phone..:'
+     A                                  3 36'ADD RECORD'
+     A                                      COLOR(BLU)
+     A                                 21  2'                                  -
+     A                                                                         -
+     A                                             '
+     A                                      DSPATR(UL)
+     A            CEN            2Y 0B 22  2PSHBTNFLD
+     A                                      PSHBTNCHC(1 'ENTER')
+     A            C12            2Y 0B 22 65PSHBTNFLD
+     A                                      PSHBTNCHC(2 'F12' CF12)
+     A                                 22 73'CANCEL'
+     A                                      COLOR(BLU)
+     A                                 22 12'CONTINUE'
+     A                                      COLOR(BLU)
+     A                                 15  2'Parents S. Name ..........:'
+     A                                 16  2'Parents Phone ............:'
+     A                                 12  2'Student Email ............:'
+     A            STUDGNAM  R        I  7 30REFFLD(RSTUDFILE/STUDGNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDSNAM  R        I  8 30REFFLD(RSTUDFILE/STUDSNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDADDRS R        I  9 30REFFLD(RSTUDFILE/STUDADDRS CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDGEND  R        I 10 30REFFLD(RSTUDFILE/STUDGEND CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDBDATE R        I 11 30REFFLD(RSTUDFILE/STUDBDATE CAJAVIER-
+     A                                      1/STUDFILE)
+     A                                      DATFMT(*ISO)
+     A            STUDPEMAILR        I 12 30REFFLD(RSTUDFILE/STUDPEMAIL CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPARNIDR        I 13 30REFFLD(RSTUDFILE/STUDPARNID CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPGN   R        I 14 30REFFLD(RSTUDFILE/STUDPGN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPSN   R        I 15 30REFFLD(RSTUDFILE/STUDPSN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPARPH R        I 16 30REFFLD(RSTUDFILE/STUDPARPH CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDACONT R        I 17 30REFFLD(RSTUDFILE/STUDACONT CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDID    R        O  6 30REFFLD(RSTUDFILE/STUDID CAJAVIER1/S-
+     A                                      TUDFILE)
+     A          R DSP02
+     A*%%TS  SD  20250609  165720  CAJAVIER    REL-V7R5M0  5770-WDS
+     A                                      CF12(12 'CANCELA')
+     A                                  1  2SYSNAME
+     A                                  1 31'Nicola Tesla School'
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  2  2USER
+     A                                  2 34'Student Record'
+     A                                  2 72TIME
+     A                                  4  2'                                  -
+     A                                                                         -
+     A                                               '
+     A                                      DSPATR(UL)
+     A                                  6  2'Student Id ...............:'
+     A                                  7  2'Student Given Name........:'
+     A                                  8  2'Student Sur Name .........:'
+     A                                  9  2'Student Address ..........:'
+     A                                 10  2'Gender ...................:'
+     A                                 11  2'Student Date of Birth.....:'
+     A                                 13  2'Parent Id ................:'
+     A                                 14  2'Parents G. Name ..........:'
+     A                                 17  2'Additional contact phone..:'
+     A                                  3 36'UPDATE RECORD'
+     A                                      COLOR(BLU)
+     A                                 21  2'                                  -
+     A                                                                         -
+     A                                             '
+     A                                      DSPATR(UL)
+     A            CEN            2Y 0B 22  2PSHBTNFLD
+     A                                      PSHBTNCHC(1 'ENTER')
+     A            C12            2Y 0B 22 65PSHBTNFLD
+     A                                      PSHBTNCHC(2 'F12' CF12)
+     A                                 22 73'CANCEL'
+     A                                      COLOR(BLU)
+     A                                 22 12'CONTINUE'
+     A                                      COLOR(BLU)
+     A                                 15  2'Parents S. Name ..........:'
+     A                                 16  2'Parents Phone ............:'
+     A                                 12  2'Student Email ............:'
+     A            STUDID    R        O  6 30REFFLD(RSTUDFILE/STUDID CAJAVIER1/S-
+     A                                      TUDFILE)
+     A            STUDGNAM  R        B  7 30REFFLD(RSTUDFILE/STUDGNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDSNAM  R        B  8 30REFFLD(RSTUDFILE/STUDSNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDADDRS R        B  9 30REFFLD(RSTUDFILE/STUDADDRS CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDGEND  R        B 10 30REFFLD(RSTUDFILE/STUDGEND CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDBDATE R        B 11 30REFFLD(RSTUDFILE/STUDBDATE CAJAVIER-
+     A                                      1/STUDFILE)
+     A                                      DATFMT(*ISO)
+     A            STUDPEMAILR        B 12 30REFFLD(RSTUDFILE/STUDPEMAIL CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPARNIDR        B 13 30REFFLD(RSTUDFILE/STUDPARNID CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPGN   R        B 14 30REFFLD(RSTUDFILE/STUDPGN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPSN   R        B 15 30REFFLD(RSTUDFILE/STUDPSN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPARPH R        B 16 30REFFLD(RSTUDFILE/STUDPARPH CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDACONT R        B 17 30REFFLD(RSTUDFILE/STUDACONT CAJAVIER-
+     A                                      1/STUDFILE)
+     A          R DSP03
+     A*%%TS  SD  20250608  142916  CAJAVIER    REL-V7R5M0  5770-WDS
+     A                                      CF12(12 'CANCELA')
+     A                                  1  2SYSNAME
+     A                                  1 31'Nicola Tesla School'
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  2  2USER
+     A                                  2 34'Student Record'
+     A                                  2 72TIME
+     A                                  4  2'                                  -
+     A                                                                         -
+     A                                               '
+     A                                      DSPATR(UL)
+     A                                  6  2'Student Id ...............:'
+     A                                  7  2'Student Given Name........:'
+     A                                  8  2'Student Sur Name .........:'
+     A                                  9  2'Student Address ..........:'
+     A                                 10  2'Gender ...................:'
+     A                                 11  2'Student Date of Birth.....:'
+     A                                 13  2'Parent Id ................:'
+     A                                 14  2'Parents G. Name ..........:'
+     A                                 17  2'Additional contact phone..:'
+     A                                  3 36'INQUERY RECORD'
+     A                                      COLOR(BLU)
+     A                                 21  2'                                  -
+     A                                                                         -
+     A                                             '
+     A                                      DSPATR(UL)
+     A            CEN            2Y 0B 22  2PSHBTNFLD
+     A                                      PSHBTNCHC(1 'ENTER')
+     A            C12            2Y 0B 22 65PSHBTNFLD
+     A                                      PSHBTNCHC(2 'F12' CF12)
+     A                                 22 73'CANCEL'
+     A                                      COLOR(BLU)
+     A                                 22 12'CONTINUE'
+     A                                      COLOR(BLU)
+     A                                 15  2'Parents S. Name ..........:'
+     A                                 16  2'Parents Phone ............:'
+     A                                 12  2'Student Email ............:'
+     A            STUDID    R        O  6 30REFFLD(RSTUDFILE/STUDID CAJAVIER1/S-
+     A                                      TUDFILE)
+     A            STUDGNAM  R        O  7 30REFFLD(RSTUDFILE/STUDGNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDSNAM  R        O  8 30REFFLD(RSTUDFILE/STUDSNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDADDRS R        O  9 30REFFLD(RSTUDFILE/STUDADDRS CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDGEND  R        O 10 30REFFLD(RSTUDFILE/STUDGEND CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDBDATE R        O 11 30REFFLD(RSTUDFILE/STUDBDATE CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDPGN   R        O 14 30REFFLD(RSTUDFILE/STUDPGN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPEMAILR        O 12 30REFFLD(RSTUDFILE/STUDPEMAIL CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPARNIDR        O 13 30REFFLD(RSTUDFILE/STUDPARNID CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPSN   R        O 15 30REFFLD(RSTUDFILE/STUDPSN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPARPH R        O 16 30REFFLD(RSTUDFILE/STUDPARPH CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDACONT R        O 17 30REFFLD(RSTUDFILE/STUDACONT CAJAVIER-
+     A                                      1/STUDFILE)
+     A          R DSP04
+     A*%%TS  SD  20250609  185008  CAJAVIER    REL-V7R5M0  5770-WDS
+     A                                      CF12(12 'CANCELA')
+     A                                      CF11(11 'DELETE')
+     A                                  1  2SYSNAME
+     A                                  1 31'Nicola Tesla School'
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  2  2USER
+     A                                  2 34'Student Record'
+     A                                  2 72TIME
+     A                                  4  2'                                  -
+     A                                                                         -
+     A                                               '
+     A                                      DSPATR(UL)
+     A                                  6  2'Student Id ...............:'
+     A                                  7  2'Student Given Name........:'
+     A                                  8  2'Student Sur Name .........:'
+     A                                  9  2'Student Address ..........:'
+     A                                 10  2'Gender ...................:'
+     A                                 11  2'Student Date of Birth.....:'
+     A                                 13  2'Parent Id ................:'
+     A                                 14  2'Parents G. Name ..........:'
+     A                                 17  2'Additional contact phone..:'
+     A                                  3 34'DELETE RECORD'
+     A                                      COLOR(RED)
+     A                                 21  2'                                  -
+     A                                                                         -
+     A                                             '
+     A                                      DSPATR(UL)
+     A            CEN            2Y 0B 22  2PSHBTNFLD
+     A                                      PSHBTNCHC(1 'ENTER')
+     A            C12            2Y 0B 22 65PSHBTNFLD
+     A                                      PSHBTNCHC(2 'F12' CF12)
+     A                                 22 73'CANCEL'
+     A                                      COLOR(BLU)
+     A                                 22 12'CONTINUE'
+     A                                      COLOR(BLU)
+     A                                 15  2'Parents S. Name ..........:'
+     A                                 16  2'Parents Phone ............:'
+     A                                 12  2'Student Email ............:'
+     A            STUDID    R        O  6 30REFFLD(RSTUDFILE/STUDID CAJAVIER1/S-
+     A                                      TUDFILE)
+     A            STUDGNAM  R        O  7 30REFFLD(RSTUDFILE/STUDGNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDSNAM  R        O  8 30REFFLD(RSTUDFILE/STUDSNAM CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDADDRS R        O  9 30REFFLD(RSTUDFILE/STUDADDRS CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDGEND  R        O 10 30REFFLD(RSTUDFILE/STUDGEND CAJAVIER1-
+     A                                      /STUDFILE)
+     A            STUDBDATE R        O 11 30REFFLD(RSTUDFILE/STUDBDATE CAJAVIER-
+     A                                      1/STUDFILE)
+     A                                      DATFMT(*ISO)
+     A            STUDPEMAILR        O 12 30REFFLD(RSTUDFILE/STUDPEMAIL CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPARNIDR        O 13 30REFFLD(RSTUDFILE/STUDPARNID CAJAVIE-
+     A                                      R1/STUDFILE)
+     A            STUDPGN   R        O 14 30REFFLD(RSTUDFILE/STUDPGN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPSN   R        O 15 30REFFLD(RSTUDFILE/STUDPSN CAJAVIER1/-
+     A                                      STUDFILE)
+     A            STUDPARPH R        O 16 30REFFLD(RSTUDFILE/STUDPARPH CAJAVIER-
+     A                                      1/STUDFILE)
+     A            STUDACONT R        O 17 30REFFLD(RSTUDFILE/STUDACONT CAJAVIER-
+     A                                      1/STUDFILE)
+     A                                 22 29'F11: Confirm DELETE'
+     A                                      COLOR(RED)
