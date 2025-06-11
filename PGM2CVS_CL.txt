@@ -1,0 +1,18 @@
+/*----------------------------------------------------------------*/    
+/* DESCRIPtion  copy table to ifs in CVS Format file      */            
+/* AUTHOR CARLOS JAVIER                                           */    
+/*----------------------------------------------------------------*/    
+PGM                                                                     
+       /*      DCL        VAR(&FILE) TYPE(*CHAR) LEN(1) VALUE('12') */  
+       /*      DCL        VAR(&FILE2) TYPE(*CHAR) LEN(15) +         */  
+       /*                VALUE('/home/cajavier/')  /* IFS PATH */       
+      /*       DCL        VAR(&FILE3) TYPE(*CHAR) LEN(27)      */       
+     /*        CHGVAR     VAR(&FILE3) VALUE(&FILE2 *TCAT &FILE)  */     
+                                                                        
+             CPYTOIMPF  FROMFILE(CAJAVIER1/CLIENTES)  +                 
+                        TOSTMF('/home/cajavier/clientes99') +           
+                        MBROPT(*REPLACE) +                              
+                        RCDDLM(*CRLF) +                                 
+                        FLDDLM(',')   +                                 
+                        STMFCCSID(*PCASCII)         
+ENDPGM                                              						

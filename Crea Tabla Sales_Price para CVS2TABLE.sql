@@ -1,0 +1,5 @@
+﻿CREATE TABLE cajavier1.sales_price
+(    ITEMID INT NOT NULL DEFAULT 0,
+    DESCRIPTION VARCHAR(50),
+    SALEPRICE   DEC(7,2)
+)
