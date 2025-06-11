@@ -1,0 +1,264 @@
+            /FREE
+            ctl-opt dftactgrp(*no);
+            dcl-f STUDFILE disk(*ext)
+                usage(*output:*update:*delete) keyed;
+            dcl-F STUDFILEL DISK(*EXT) usage(*INPUT) keyed
+                   rename(RSTUDFILE:wstud);
+            dcl-f DSPSTUD01 workstn sfile(DETAIL:RSN);
+
+            dcl-s RSN packed(4,0);
+            dcl-s FLAG char(1);
+            dcl-s WSTDSNAM  char(30);
+          // dcl-s WSTUDID packed(5, 0);
+            dcl-s OPT CHAR(1);
+            dcl-s Wnam  char(30);
+
+            // main routine
+                         exsr SR_DATA;
+                         dow not *IN03;
+                         write FOOT;
+                         exfmt HEADER ;
+                         if not *IN03;
+
+            // search in subfile by Student ID Or  S_Name
+
+                           if WSTUDID > 0 and WSTDSNAM = *blank;
+                             PR_LOCbyID();
+                           endif;
+
+                         if WSTDSNAM <> *BLANKS and WSTUDID = *zeros;
+                           PR_LOC_NAM();
+                         endif;
+
+                       // ****** Add New Record  ******
+
+                         if *IN06= *on;
+                           PR_ADDING();
+                           exsr SR_DATA ;
+                         endif;
+
+                         dou %eof;
+                           readc DETAIL;
+
+                            if OPT = '2';
+                              chain STUDID STUDFILE;
+                              if %found(STUDFILE);
+                                PR_UPDATE();
+                                exsr SR_DATA ;
+                              endif;
+                            endif;
+
+                           if OPT = '4';
+                             chain STUDID STUDFILE ;
+                             if %found(STUDFILE);
+                               PR_DELETE();
+                                exsr SR_DATA ;
+                             endif;
+                           endif;
+
+                           if OPT= '5';
+                             chain STUDID STUDFILE ;
+                             if %found(STUDFILE);
+                               PR_INQUIRY();
+                                exsr SR_DATA ;
+                             endif;
+                           endif;
+
+                         endif;
+                         enddo;
+
+                         if WSTUDID = 0 and WSTDSNAM = *blanks;
+                           exsr SR_DATA ;
+                         endif;
+
+                         enddo;
+
+                         *inlr = *on;
+
+                         begsr SR_DATA;
+                           PR_CLEAN();
+                           PR_FILL;
+                      // CLEAR OPT;
+                         endsr;
+
+           dcl-proc PR_LOCbyID;
+              dcl-pi *n;
+              end-pi;
+
+              PR_CLEAN();
+
+              setll *loval STUDFILE ;
+              setll WSTUDID STUDFILE ;
+                dow not %eof(STUDFILE);
+                 reade WSTUDID STUDFILE;
+                 if not %eof(STUDFILE);
+                  RSN=RSN +1;
+                  write DETAIL;
+                 endif;
+                enddo;
+                return;
+           end-proc;
+
+           dcl-proc PR_LOC_NAM;
+              dcl-pi *n;
+              end-pi;
+
+              PR_CLEAN();
+
+              WNAM =WSTDSNAM;
+              setll *loval STUDFILEL;
+              setll WNAM STUDFILEL;
+                dow not %eof(STUDFILEL);
+                  reade WNAM STUDFILEL;
+                  if not %eof(STUDFILEL);
+                   RSN=RSN +1;
+                   write DETAIL;
+                  endif;
+                enddo;
+                return;
+           end-proc;
+
+
+           dcl-proc PR_ADDING;
+              dcl-pi *n;
+              end-pi;
+
+              STUDBDATE = %DATE;
+
+                dow not *IN12;
+                  FLAG='N';
+                  STUDID  = STUDID  + 1;
+                  exfmt DSP01;
+                  if not *IN12;
+                  PR_VALIDATE();
+                   if flag = 'N';
+                       write RSTUDFILE;
+                   endif;
+                  endif;
+                enddo;
+              //*IN12 = *on;
+                return;
+           end-proc;
+
+           dcl-proc PR_CLEAN;
+           dcl-pi *n;
+           end-pi;
+            *IN93 = *on;
+            write HEADER ;
+            *IN93 = *off;
+            clear RSN;
+            return;
+           end-proc;
+
+               dcl-proc PR_FILL;
+               dcl-pi *n;
+               end-pi;
+
+               setll *loval STUDFILE;
+               dow not %eof(STUDFILE);
+                read STUDFILE;
+               if not %eof(STUDFILE);
+                RSN=RSN +1;
+                write DETAIL;
+               endif;
+              enddo;
+              if RSN=0;
+               RSN = RSN +1;
+               write DETAIL;
+              endif;
+              return;
+             end-proc;
+
+           dcl-proc PR_UPDATE;
+              dcl-pi *n;
+              end-pi;
+
+                dow not *IN12;
+                  FLAG='N';
+                  exfmt DSP02;
+                  if not *IN12;
+                  PR_VALIDATE();
+                   if flag = 'N';
+                    update RSTUDFILE;
+                    //leave;
+                   endif;
+                  endif;
+                enddo;
+              //IN12 = *off;
+                return;
+           end-proc;
+
+           dcl-proc PR_DELETE;
+              dcl-pi *n;
+              end-pi;
+                dow not *IN12;
+                  FLAG='N';
+                  exfmt DSP04;
+                  if not *IN12;
+                   if *IN11 = *on;
+                    delete RSTUDFILE ; // TO FILE RECORD FORMAT
+                    leave;
+                   endif;
+                  endif;
+                enddo;
+                *IN12 = *off;
+                return;
+           end-proc;
+
+           dcl-proc PR_INQUIRY;
+              dcl-pi *n;
+              end-pi;
+
+                dow not *IN12;
+                  exfmt DSP03;
+                  if not *IN12;
+                    leave;
+                  endif;
+                enddo;
+                *IN12 = *off;
+                return;
+           end-proc;
+
+           dcl-proc PR_VALIDATE;
+              dcl-pi *n;
+              end-pi;
+                *IN25 = '0';
+                *IN26 = '0';
+                *IN27 = '0';
+                *IN28 = '0';
+                FLAG = 'N';
+
+                if STUDSNAM = *blanks;
+                  *IN25 = *ON;
+                  FLAG = 'S';
+                endif;
+
+                if *IN25 = *Off;
+                  if STUDADDRS  = *blanks;
+                  *IN26 = *on;
+                  FLAG = 'S';
+                  endif;
+                endif;
+
+                if *IN26 = *Off;
+                  if STUDGEND = *blanks;
+                  *IN27 = *on;
+                  FLAG = 'S';
+                  endif;
+                endif;
+
+                if *IN27 = *Off;
+                  if STUDPARNID = *ZEROS;
+                  *IN28 = *on;
+                  FLAG = 'S';
+                  endif;
+                endif;
+                return;
+           end-proc;
+
+
+
+
+
+
+

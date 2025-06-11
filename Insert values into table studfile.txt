@@ -1,0 +1,32 @@
+---------------------------------------------------------------------
+
+INSERT INTO STUDFILE  VALUES (1, 'Neo ', 'Anderson',
+'6666 Nw Judgement Day Av', 'F','2024-01-01 10:01:01',
+ '11111111111','The_Arquitech', 'Anderson', '211111111111111', 
+ 'NeoAnderson@your.com', '11111111112');
+
+INSERT INTO STUDFILE  VALUES (2, 'Trinity', 'Anderson',
+'6666 Nw Judgement Day Av', 'F','2024-02-02 12:02:02',
+ '11111111111','James', 'Anderson', '211111111111111', 
+ 'TrinityAnderson@your.com', '11111111112');
+
+INSERT INTO STUDFILE  VALUES (3, 'Cypher', 'Badchar',
+'6666 Nw Judgement Day Av', 'F','2024-03-03 13:03:03',
+ '11111111111','William', 'Badchar', '211111111111111', 
+ 'CypherBadchar@your.com', '11111111112');
+	
+INSERT INTO STUDFILE  VALUES (4, 'Morpheous', 'Dreams',
+'6666 Nw Judgement Day Av', 'F','2024-04-04 14:04:04',
+ '11111111111','Thomas', 'Dreams', '211111111111111', 
+ 'MorpheousDreams@your.com', '11111111112');
+
+INSERT INTO STUDFILE  VALUES (5, 'Agent', 'Smith',
+'6666 Nw Judgement Day Av', 'F','2024-05-05 15:05:05',
+ '11111111111','Mathew', 'Smith', '211111111111111', 
+ 'AgentSmith@your.com', '11111111112');
+
+INSERT INTO STUDFILE  VALUES (6, 'The Oracle', 'Knowles',
+'6666 Nw Judgement Day Av', 'F','2024-06-06 16:06:06',
+ '11111111111','Albert', 'Knowles', '211111111111111', 
+ 'TheOracleKnowles@your.com', '11111111112');
+	

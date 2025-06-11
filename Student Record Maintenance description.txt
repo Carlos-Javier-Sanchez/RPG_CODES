@@ -1,0 +1,89 @@
+PROGRAMAS: PGMSTUD01
+ARCHIVOS:  
+	STUDFILE	Student informtion file 
+	STUDPAY     Payment file
+	STUDREGF    Studen record file
+	STUDRECEIP	Payment receipt file 
+	STUDFILEL	Logical F. < STUDFILE * ORDER BY STUDSNAM 
+PANTALLA: DSPSTUD01
+
+
+Student Master File STUDFILE
+
+		
+	
+CREATE TABLE STUDFILE         
+( Student_Id for STUDID  DEC(5, 0) NOT NULL, 
+   Student_GNam for STUDGNAM CHAR(30),         
+   Student_SNam for STUDSNAM CHAR(30),         
+   Student_Addr for STUDADDRS CHAR(30),        
+   Gender for STUDGEND char(1),          
+   Birthday for STUDBDATE DATE,            
+   Parent_Id for STUDPARNID CHAR(11),       
+   Parent_GNam for  STUDPGN CHAR(30),          
+   Parent_SNam for STUDPSN CHAR(30),          
+   Parent_Phone for STUDPARPH CHAR(15),        
+   Student_Email for STUDPEMAIL CHAR(50),       
+   Additional_cont for STUDACONT CHAR(30),   
+   PRIMARY KEY(STUDID) )      
+   RCDFMT RSTUDFILE           
+                              
+	
+	
+--------------------------------------------------------------------------------------	
+Studen enrollment record (Student Enrollment/Registration Record) StudRegF
+	
+
+CREATE TABLE STUDREGF               
+( REGID  DEC(5, 0) NOT NULL,        
+   REGSLVL CHAR(40),                
+   REGGRAD CHAR(40),                
+   REGDATE DATE not null,           
+   REGSTAT  char(1),                
+   REGRQ1  DEC(2, 0),               
+   REGRQ2  DEC(2, 0),               
+   REGRQ3  DEC(2, 0),               
+   REGRQ4  DEC(2, 0),               
+   REGPROM1 DEC(2, 2) not null,     
+   REGRQ5  DEC(2, 0),               
+   REGRQ6  DEC(2, 0),               
+   REGRQ7  DEC(2, 0),               
+   REGRQ8  DEC(2, 0),               
+   REGPROM2 DEC(2, 2) not null,     
+   FOREIGN KEY(regid)               
+   REFERENCES STUDFILE(STUDID))  
+   RCDFMT RSTUDREGF              
+    
+-----------------------------------------------------------------------------------
+	
+Student Payment file STUDPAYF 	
+
+	
+	CREATE TABLE STUDPAYF                                  
+( Student_ID for PAYSTUDID  DEC(5, 0) NOT NULL,        
+   Tuition_fee for paytuifee dec(9, 2),                
+   Registr_Fee for payregf   dec(9, 2),                
+   Monthlyr_Pay for paymonth  dec(9, 2),               
+   Discount for paydisc  dec(7, 2),                    
+   Esp_Discount for paydiscxx  dec(7, 2),              
+   Debt_Amount for paydebt dec(7, 2),                  
+   foreign key(paystudid) references studfile(studid) )  
+   RCDFMT RSTUDPAYF                                    
+   
+----------------------------------------------------------------------------   
+
+
+
+CREATE TABLE STURECEIP                                                
+( Receipt_ID for recid  INT GENERATED ALWAYS AS IDENTITY (START WITH  
+ 1 INCREMENT BY 1 NO CYCLE) not null,                                 
+  Receip_Num for recnum int not null,                                 
+  Student_id for Recstuid dec(5, 0),                                  
+  Receipt_Date for recdate  date,                                     
+  Tot_Amount for recamoun  dec(9, 2),                                 
+  Ext_disc for recdiscx dec(7, 2),                                    
+  Discount for recdisc  dec(7, 2),                                    
+  Tax for rectax dec(7, 2),                                           
+  primary key(recstuid) )                                             
+   RCDFMT RSTURECEIP                                                  
+   

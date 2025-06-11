@@ -1,0 +1,13 @@
+
+
+
+
+                                               { STUDMAST }
+                                              (Student File)
+
+
+
+
+
+   { STUDREGF }                 { STUDPAYF }                { PAYMNTLY }              { STUDREC}  
+(Students Enrollment)        (Students PAYMENT)            (Student File)          (Student RecordsFile)
