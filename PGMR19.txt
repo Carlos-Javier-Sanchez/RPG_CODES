@@ -1,0 +1,21 @@
+
+     FPRODUCTOS IF   E           K DISK
+     FPRODU01   O    E             PRINTER OFLIND(*IN90)
+      /FREE
+
+                         WRITE TITULO;
+                         DOW NOT %EOF(PRODUCTOS);
+                         READ PRODUCTOS;
+                         IF  NOT %EOF(PRODUCTOS);
+                         IF  *IN90 = *ON;
+                          WRITE TITULO;
+                          *IN90 = *OFF;
+                        ENDIF;
+                        TOCAN = TOCAN + 1;
+                        TOTPRE = TOTPRE + PROPRE;
+                        WRITE DETALLE;
+                        ENDIF ;
+                        ENDDO;
+                        WRITE TOTALES;
+                        *INLR = *ON;
+      /END-FREE
